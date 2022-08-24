@@ -26,6 +26,7 @@ class PostObjectTypeFieldResolver extends AbstractQueryableObjectTypeFieldResolv
     }
     final protected function getStringScalarTypeResolver(): StringScalarTypeResolver
     {
+        /** @var StringScalarTypeResolver */
         return $this->stringScalarTypeResolver ??= $this->instanceManager->getInstance(StringScalarTypeResolver::class);
     }
     final public function setBooleanScalarTypeResolver(BooleanScalarTypeResolver $booleanScalarTypeResolver): void
@@ -34,9 +35,13 @@ class PostObjectTypeFieldResolver extends AbstractQueryableObjectTypeFieldResolv
     }
     final protected function getBooleanScalarTypeResolver(): BooleanScalarTypeResolver
     {
+        /** @var BooleanScalarTypeResolver */
         return $this->booleanScalarTypeResolver ??= $this->instanceManager->getInstance(BooleanScalarTypeResolver::class);
     }
 
+    /**
+     * @return array<class-string<ObjectTypeResolverInterface>>
+     */
     public function getObjectTypeResolverClassesToAttachTo(): array
     {
         return [
@@ -44,6 +49,9 @@ class PostObjectTypeFieldResolver extends AbstractQueryableObjectTypeFieldResolv
         ];
     }
 
+    /**
+     * @return string[]
+     */
     public function getFieldNamesToResolve(): array
     {
         return [
